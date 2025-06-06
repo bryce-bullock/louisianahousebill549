@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;title&gt;Interactive Guide to Louisiana HB 549&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;!-- Chosen Palette: Warm Neutrals --&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;!-- Application Structure Plan: The SPA is structured to answer the key questions a municipal leader would have: What is it? Why does it matter? What do I need? Who does what? and What's next? This user-centric flow—Overview, Opportunity, Requirements, Responsibilities, and Timeline/Action Plan—is more intuitive than the bill's legal structure. It starts with a high-level summary, moves to tangible benefits (interactive calculator), details the technical needs, clarifies roles with interactive tabs, and ends with a clear, actionable timeline and checklist. This design prioritizes quick comprehension and decision-making for a busy audience. --&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;!-- Visualization &amp; Content Choices: 1. Act's Benefits -&gt; Goal: Compare/Engage -&gt; Viz: Interactive donut chart (Chart.js) and cost-benefit calculator. Interaction: User inputs premium data to see potential savings dynamically. Justification: Makes the financial incentive tangible and personalizes the benefit. 2. Stakeholder Roles -&gt; Goal: Organize/Compare -&gt; Viz: Tabbed interface (HTML/JS). Interaction: Clicking tabs reveals role-specific text. Justification: Simplifies complex information and prevents cognitive overload. 3. Key Dates -&gt; Goal: Inform/Change -&gt; Viz: Horizontal timeline diagram (HTML/Tailwind). Interaction: Clean visual flow. Justification: More intuitive for showing a sequence of events than a simple list or table. 4. Tech Specs -&gt; Goal: Inform -&gt; Viz: Icon-driven cards. Justification: Enhances scannability of technical details. --&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;style&gt;</span></p>
+<p class="p1"><span class="s1">        body {</span></p>
+<p class="p1"><span class="s1">            font-family: 'Inter', sans-serif;</span></p>
+<p class="p1"><span class="s1">            background-color: #F8F7F4;</span></p>
+<p class="p1"><span class="s1">            color: #1f2937;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .nav-link {</span></p>
+<p class="p1"><span class="s1">            transition: color 0.3s ease, border-bottom-color 0.3s ease;</span></p>
+<p class="p1"><span class="s1">            border-bottom: 2px solid transparent;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .nav-link:hover, .nav-link.active {</span></p>
+<p class="p1"><span class="s1">            color: #2563eb;</span></p>
+<p class="p1"><span class="s1">            border-bottom-color: #2563eb;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .tab-button {</span></p>
+<p class="p1"><span class="s1">            transition: all 0.3s ease;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .tab-button.active {</span></p>
+<p class="p1"><span class="s1">            background-color: #2563eb;</span></p>
+<p class="p1"><span class="s1">            color: #ffffff;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .timeline-item::before {</span></p>
+<p class="p1"><span class="s1">            content: '';</span></p>
+<p class="p1"><span class="s1">            position: absolute;</span></p>
+<p class="p1"><span class="s1">            top: 50%;</span></p>
+<p class="p1"><span class="s1">            left: -0.5rem;</span></p>
+<p class="p1"><span class="s1">            transform: translateY(-50%);</span></p>
+<p class="p1"><span class="s1">            width: 1rem;</span></p>
+<p class="p1"><span class="s1">            height: 1rem;</span></p>
+<p class="p1"><span class="s1">            background-color: #9ca3af;</span></p>
+<p class="p1"><span class="s1">            border-radius: 9999px;</span></p>
+<p class="p1"><span class="s1">            border: 2px solid #F8F7F4;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .timeline-item.active::before {</span></p>
+<p class="p1"><span class="s1">            background-color: #2563eb;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        .chart-container {</span></p>
+<p class="p1"><span class="s1">            position: relative;</span></p>
+<p class="p1"><span class="s1">            width: 100%;</span></p>
+<p class="p1"><span class="s1">            max-width: 400px;</span></p>
+<p class="p1"><span class="s1">            margin-left: auto;</span></p>
+<p class="p1"><span class="s1">            margin-right: auto;</span></p>
+<p class="p1"><span class="s1">            height: 300px;</span></p>
+<p class="p1"><span class="s1">            max-height: 350px;</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">        @media (min-width: 768px) {</span></p>
+<p class="p1"><span class="s1">            .chart-container {</span></p>
+<p class="p1"><span class="s1">                height: 350px;</span></p>
+<p class="p1"><span class="s1">            }</span></p>
+<p class="p1"><span class="s1">        }</span></p>
+<p class="p1"><span class="s1">    &lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body class="antialiased"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    &lt;header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm"&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;nav class="container mx-auto px-6 py-4 flex justify-between items-center"&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;h1 class="text-xl font-bold text-gray-800"&gt;HB 549 Guide&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="hidden md:flex items-center space-x-8"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;a href="#overview" class="nav-link pb-1"&gt;Overview&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;a href="#opportunity" class="nav-link pb-1"&gt;The Opportunity&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;a href="#requirements" class="nav-link pb-1"&gt;Requirements&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;a href="#responsibilities" class="nav-link pb-1"&gt;Who Does What&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;a href="#timeline" class="nav-link pb-1"&gt;Timeline &amp; Action Plan&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"&gt;&lt;/path&gt;&lt;/svg&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/nav&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2"&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;a href="#overview" class="block nav-link"&gt;Overview&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;a href="#opportunity" class="block nav-link"&gt;The Opportunity&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;a href="#requirements" class="block nav-link"&gt;Requirements&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;a href="#responsibilities" class="block nav-link"&gt;Who Does What&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;a href="#timeline" class="block nav-link"&gt;Timeline &amp; Action Plan&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/header&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    &lt;main class="container mx-auto px-6 py-12"&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">        &lt;section id="overview" class="text-center mb-20 scroll-mt-24"&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;h2 class="text-4xl font-bold text-blue-700 mb-4"&gt;Louisiana Act 19: A New Mandate for Safer Roads &amp; Lower Costs&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;p class="max-w-3xl mx-auto text-lg text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1">                This interactive guide breaks down Louisiana House Bill 549 (Act 19). The law creates a mandatory insurance discount for commercial vehicles, including municipal fleets, that are equipped with both a dashboard camera and a telematics system. The goal is to enhance public safety, reduce fraud, and lower claim costs for everyone.</span></p>
+<p class="p1"><span class="s1">            &lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">        &lt;section id="opportunity" class="mb-20 scroll-mt-24"&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="text-center mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;h3 class="text-3xl font-bold text-gray-800"&gt;The Dual Benefit for Your Municipality&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;p class="max-w-2xl mx-auto text-gray-600 mt-2"&gt;Act 19 presents a clear opportunity to achieve two critical goals: significant financial savings and dramatically improved risk management. This section helps you visualize the potential impact on your budget and operations.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="grid md:grid-cols-2 gap-8 items-center"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="bg-white p-6 rounded-lg shadow-md"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h4 class="font-bold text-xl mb-2 text-blue-700"&gt;Calculate Your Potential Savings&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;p class="text-gray-600 mb-4"&gt;Enter your fleet's estimated annual liability premium to see a hypothetical savings projection. The law mandates an "actuarially justified" discount, which will vary by insurer.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;div class="space-y-4"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;div&gt;</span></p>
+<p class="p1"><span class="s1">                            &lt;label for="premium-input" class="block text-sm font-medium text-gray-700"&gt;Annual Fleet Liability Premium ($)&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1">                            &lt;input type="number" id="premium-input" placeholder="e.g., 500000" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;button id="calculate-btn" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"&gt;Calculate&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="bg-white p-6 rounded-lg shadow-md h-full"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;div class="chart-container"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;canvas id="savingsChart"&gt;&lt;/canvas&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;p id="chart-explainer" class="text-center text-sm text-gray-500 mt-4"&gt;Enter your premium to see a breakdown.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;div class="mt-8 grid md:grid-cols-2 gap-8"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="bg-white p-6 rounded-lg shadow-md"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h4 class="font-bold text-xl mb-2 text-emerald-700"&gt;Enhanced Safety &amp; Risk Management&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;ul class="space-y-3 text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-start"&gt;&lt;span class="text-emerald-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Objective Evidence:&lt;/strong&gt; Dash cams provide irrefutable video for accident investigation, protecting against fraudulent claims.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-start"&gt;&lt;span class="text-emerald-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Proactive Risk Mitigation:&lt;/strong&gt; Telematics data helps identify risky driving behaviors, enabling targeted training before an incident occurs.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-start"&gt;&lt;span class="text-emerald-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Improved Accountability:&lt;/strong&gt; Data on vehicle use, speed, and braking enhances driver accountability and fleet oversight.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-start"&gt;&lt;span class="text-emerald-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Community Trust:&lt;/strong&gt; Demonstrates a commitment to public safety and transparency, building confidence with your citizens.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="bg-white p-6 rounded-lg shadow-md"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h4 class="font-bold text-xl mb-2 text-amber-700"&gt;Strategic Operational Gains&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;ul class="space-y-3 text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-start"&gt;&lt;span class="text-amber-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Budget Relief:&lt;/strong&gt; Direct cost savings from lower premiums can be reallocated to other critical services.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-start"&gt;&lt;span class="text-amber-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Data-Driven Decisions:&lt;/strong&gt; Use telematics data for route optimization, fuel efficiency programs, and infrastructure planning.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                         &lt;li class="flex items-start"&gt;&lt;span class="text-amber-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Streamlined Claims:&lt;/strong&gt; Faster, more accurate claims processing with clear evidence, reducing administrative burden and legal costs.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                         &lt;li class="flex items-start"&gt;&lt;span class="text-amber-500 mr-3 mt-1"&gt;&amp;#10003;&lt;/span&gt;&lt;span&gt;&lt;strong&gt;Long-Term ROI:&lt;/strong&gt; The initial technology investment is offset by sustained premium reductions and accident-related cost avoidance.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">        &lt;section id="requirements" class="mb-20 scroll-mt-24"&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="text-center mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;h3 class="text-3xl font-bold text-gray-800"&gt;What You'll Need to Comply&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;p class="max-w-2xl mx-auto text-gray-600 mt-2"&gt;To qualify for the mandatory discount, each commercial vehicle must be equipped with *both* of the following systems, meeting specific technical standards.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="grid md:grid-cols-2 gap-8"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="bg-white p-8 rounded-lg shadow-md text-center"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;div class="text-5xl mb-4"&gt;&amp;#128249;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h4 class="font-bold text-xl mb-2 text-gray-800"&gt;Dashboard Camera&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;ul class="text-left space-y-2 text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1">                       &lt;li class="flex items-center"&gt;&lt;span class="text-blue-500 mr-3 text-2xl"&gt;&amp;bull;&lt;/span&gt;&lt;span&gt;Dashboard-mounted and forward-facing.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                       &lt;li class="flex items-center"&gt;&lt;span class="text-blue-500 mr-3 text-2xl"&gt;&amp;bull;&lt;/span&gt;&lt;span&gt;Minimum 1080p resolution.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                       &lt;li class="flex items-center"&gt;&lt;span class="text-blue-500 mr-3 text-2xl"&gt;&amp;bull;&lt;/span&gt;&lt;span&gt;Continuous loop recording capability.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="bg-white p-8 rounded-lg shadow-md text-center"&gt;</span></p>
+<p class="p1"><span class="s1">                     &lt;div class="text-5xl mb-4"&gt;&amp;#128225;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h4 class="font-bold text-xl mb-2 text-gray-800"&gt;Telematics System&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;ul class="text-left space-y-2 text-gray-600"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-center"&gt;&lt;span class="text-blue-500 mr-3 text-2xl"&gt;&amp;bull;&lt;/span&gt;&lt;span&gt;Collects &amp; transmits real-time driving data.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-center"&gt;&lt;span class="text-blue-500 mr-3 text-2xl"&gt;&amp;bull;&lt;/span&gt;&lt;span&gt;Tracks speed, braking, and mileage.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;li class="flex items-center"&gt;&lt;span class="text-blue-500 mr-3 text-2xl"&gt;&amp;bull;&lt;/span&gt;&lt;span&gt;Must be compatible with the dash cam for data verification.&lt;/span&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/section&gt;</span></p>
+<p class="p1"><span class="s1">       <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">        &lt;section id="responsibilities" class="mb-20 scroll-mt-24"&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="text-center mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;h3 class="text-3xl font-bold text-gray-800"&gt;Who Does What?&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;p class="max-w-2xl mx-auto text-gray-600 mt-2"&gt;The law establishes clear roles and responsibilities for municipalities, insurers, and the state. Click each tab to understand the specific obligations for each group.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="max-w-4xl mx-auto"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="flex justify-center border-b border-gray-200 mb-6"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;button data-tab="municipality" class="tab-button active py-2 px-6 font-semibold text-gray-500 rounded-t-md"&gt;Municipalities (You)&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;button data-tab="insurer" class="tab-button py-2 px-6 font-semibold text-gray-500 rounded-t-md"&gt;Insurers&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;button data-tab="commissioner" class="tab-button py-2 px-6 font-semibold text-gray-500 rounded-t-md"&gt;Commissioner&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div id="tab-content" class="bg-white p-8 rounded-lg shadow-md"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;div id="municipality-content" class="tab-pane active"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;h4 class="font-bold text-xl mb-4"&gt;Your Responsibilities as a Policyholder&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;ul class="space-y-3 text-gray-600 list-disc list-inside"&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Install and maintain compliant dash cam and telematics systems on all relevant fleet vehicles.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Provide proof of installation and operation to your insurer (e.g., vendor certificate).&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Ensure the systems are in continuous use throughout the policy period.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Annually, submit a telematics summary report or a signed affidavit to your insurer to verify ongoing compliance.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Failure to maintain the systems will result in losing the discount at the next renewal.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;div id="insurer-content" class="tab-pane hidden"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;h4 class="font-bold text-xl mb-4"&gt;Insurer Responsibilities&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                         &lt;ul class="space-y-3 text-gray-600 list-disc list-inside"&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Provide an actuarially justified liability premium discount for all compliant commercial vehicles.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Annually verify that policyholders remain in compliance with the technology requirements.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;By March 1st each year, report to the Commissioner of Insurance on the number of discounted policies, total savings, and observed changes in claim data.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Face penalties for willful noncompliance with the law.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;div id="commissioner-content" class="tab-pane hidden"&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;h4 class="font-bold text-xl mb-4"&gt;Commissioner of Insurance Responsibilities&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;ul class="space-y-3 text-gray-600 list-disc list-inside"&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Establish and publish the minimum technical standards for dash cams and telematics systems.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Create rules for verification procedures and potential exemptions.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;Compile annual reports from all insurers into a summary for the state legislature.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                           &lt;li&gt;The first summary report to the legislature is due by June 1, 2027.&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                        &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">        &lt;section id="timeline" class="scroll-mt-24"&gt;</span></p>
+<p class="p1"><span class="s1">             &lt;div class="text-center mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;h3 class="text-3xl font-bold text-gray-800"&gt;Implementation Timeline &amp; Strategic Action Plan&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;p class="max-w-2xl mx-auto text-gray-600 mt-2"&gt;Act 19 has a defined rollout schedule. Use this timeline to guide your planning and the checklist below to ensure your municipality is prepared.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;div class="relative max-w-2xl mx-auto border-l-4 border-gray-200 pl-8 py-4"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="timeline-item active mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h5 class="font-bold text-lg text-blue-700"&gt;Now - 2025: Planning &amp; Preparation&lt;/h5&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;p class="text-gray-600"&gt;This is the window for strategic planning, budgeting, and technology procurement.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="timeline-item active mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h5 class="font-bold text-lg text-blue-700"&gt;January 1, 2026: Act Becomes Effective&lt;/h5&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;p class="text-gray-600"&gt;The law applies to all commercial motor vehicle insurance policies issued or renewed on or after this date.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="timeline-item mb-12"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h5 class="font-bold text-lg"&gt;March 1, 2027: First Insurer Reports Due&lt;/h5&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;p class="text-gray-600"&gt;Insurers must submit their first annual report on discount adoption and impact to the Commissioner.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;div class="timeline-item"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;h5 class="font-bold text-lg"&gt;June 1, 2027: First Legislative Report Due&lt;/h5&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;p class="text-gray-600"&gt;The Commissioner of Insurance submits the first summary report to the House and Senate Insurance Committees.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            &lt;div class="max-w-4xl mx-auto mt-16 bg-white p-8 rounded-lg shadow-md"&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;h4 class="text-2xl font-bold text-gray-800 mb-6 text-center"&gt;Your Strategic Action Checklist&lt;/h4&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;ul class="space-y-4"&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Assess Fleet &amp; Prioritize:&lt;/strong&gt; Inventory all commercial vehicles to identify those covered by the Act and determine where the ROI is greatest.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Conduct Cost-Benefit Analysis:&lt;/strong&gt; Research technology costs and project insurance savings, including non-monetary benefits like reduced accident costs.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Engage with Insurers:&lt;/strong&gt; Start conversations now to understand their planned discount structures and verification requirements.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Monitor Regulatory News:&lt;/strong&gt; Keep track of updates from the Commissioner of Insurance regarding the final technical standards.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Review Internal Policies:&lt;/strong&gt; Update policies on vehicle operation, driver conduct, and data privacy. Consider labor agreement implications.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Plan Your Budget:&lt;/strong&gt; Allocate funds for technology acquisition and maintenance in your upcoming budget cycles.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                    &lt;li class="flex items-start"&gt;&lt;span class="text-gray-400 mr-4"&gt;&amp;#9744;&lt;/span&gt;&lt;div&gt;&lt;strong class="text-gray-700"&gt;Develop a Data Strategy:&lt;/strong&gt; Plan how to use the collected data for fleet optimization, safety programs, and more, beyond just the insurance discount.&lt;/div&gt;&lt;/li&gt;</span></p>
+<p class="p1"><span class="s1">                &lt;/ul&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    &lt;/main&gt;</span></p>
+<p class="p1"><span class="s1">   <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">    &lt;footer class="bg-gray-800 text-white mt-20"&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;div class="container mx-auto px-6 py-4 text-center text-sm"&gt;</span></p>
+<p class="p1"><span class="s1">            &lt;p&gt;This interactive guide is for informational purposes only and does not constitute legal advice. Please consult the official text of LA H.B. 549 (Act No. 19) and legal counsel for specific guidance.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/footer&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">    &lt;script&gt;</span></p>
+<p class="p1"><span class="s1">        document.addEventListener('DOMContentLoaded', function() {</span></p>
+<p class="p1"><span class="s1">            const mobileMenuButton = document.getElementById('mobile-menu-button');</span></p>
+<p class="p1"><span class="s1">            const mobileMenu = document.getElementById('mobile-menu');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            mobileMenuButton.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">                mobileMenu.classList.toggle('hidden');</span></p>
+<p class="p1"><span class="s1">            });</span></p>
+<p class="p1"><span class="s1">           <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">            const mobileLinks = mobileMenu.querySelectorAll('a');</span></p>
+<p class="p1"><span class="s1">            mobileLinks.forEach(link =&gt; {</span></p>
+<p class="p1"><span class="s1">                link.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">                    mobileMenu.classList.add('hidden');</span></p>
+<p class="p1"><span class="s1">                });</span></p>
+<p class="p1"><span class="s1">            });</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            const sections = document.querySelectorAll('section');</span></p>
+<p class="p1"><span class="s1">            const navLinks = document.querySelectorAll('.nav-link');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            window.addEventListener('scroll', () =&gt; {</span></p>
+<p class="p1"><span class="s1">                let current = '';</span></p>
+<p class="p1"><span class="s1">                sections.forEach(section =&gt; {</span></p>
+<p class="p1"><span class="s1">                    const sectionTop = section.offsetTop;</span></p>
+<p class="p1"><span class="s1">                    if (pageYOffset &gt;= sectionTop - 150) {</span></p>
+<p class="p1"><span class="s1">                        current = section.getAttribute('id');</span></p>
+<p class="p1"><span class="s1">                    }</span></p>
+<p class="p1"><span class="s1">                });</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">                navLinks.forEach(link =&gt; {</span></p>
+<p class="p1"><span class="s1">                    link.classList.remove('active');</span></p>
+<p class="p1"><span class="s1">                    if (link.getAttribute('href') === `#${current}`) {</span></p>
+<p class="p1"><span class="s1">                        link.classList.add('active');</span></p>
+<p class="p1"><span class="s1">                    }</span></p>
+<p class="p1"><span class="s1">                });</span></p>
+<p class="p1"><span class="s1">            });</span></p>
+<p class="p1"><span class="s1">           <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">            const tabButtons = document.querySelectorAll('.tab-button');</span></p>
+<p class="p1"><span class="s1">            const tabPanes = document.querySelectorAll('.tab-pane');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            tabButtons.forEach(button =&gt; {</span></p>
+<p class="p1"><span class="s1">                button.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">                    tabButtons.forEach(btn =&gt; btn.classList.remove('active'));</span></p>
+<p class="p1"><span class="s1">                    button.classList.add('active');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">                    const tab = button.getAttribute('data-tab');</span></p>
+<p class="p1"><span class="s1">                    tabPanes.forEach(pane =&gt; {</span></p>
+<p class="p1"><span class="s1">                        pane.classList.add('hidden');</span></p>
+<p class="p1"><span class="s1">                        pane.classList.remove('active');</span></p>
+<p class="p1"><span class="s1">                    });</span></p>
+<p class="p1"><span class="s1">                   <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">                    const activePane = document.getElementById(`${tab}-content`);</span></p>
+<p class="p1"><span class="s1">                    activePane.classList.remove('hidden');</span></p>
+<p class="p1"><span class="s1">                    activePane.classList.add('active');</span></p>
+<p class="p1"><span class="s1">                });</span></p>
+<p class="p1"><span class="s1">            });</span></p>
+<p class="p1"><span class="s1">           <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">            const calculateBtn = document.getElementById('calculate-btn');</span></p>
+<p class="p1"><span class="s1">            const premiumInput = document.getElementById('premium-input');</span></p>
+<p class="p1"><span class="s1">            const chartExplainer = document.getElementById('chart-explainer');</span></p>
+<p class="p1"><span class="s1">            const ctx = document.getElementById('savingsChart').getContext('2d');</span></p>
+<p class="p1"><span class="s1">            let savingsChart;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            function createOrUpdateChart(premium = 0, savings = 0) {</span></p>
+<p class="p1"><span class="s1">                const remaining = premium - savings;</span></p>
+<p class="p1"><span class="s1">                const savingsPercentage = premium &gt; 0 ? ((savings / premium) * 100).toFixed(1) : 0;</span></p>
+<p class="p1"><span class="s1">               <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">                chartExplainer.textContent = `With a ${savingsPercentage}% estimated discount, you could save $${savings.toLocaleString()}.`;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">                if (savingsChart) {</span></p>
+<p class="p1"><span class="s1">                    savingsChart.data.datasets[0].data = [remaining, savings];</span></p>
+<p class="p1"><span class="s1">                    savingsChart.update();</span></p>
+<p class="p1"><span class="s1">                } else {</span></p>
+<p class="p1"><span class="s1">                    savingsChart = new Chart(ctx, {</span></p>
+<p class="p1"><span class="s1">                        type: 'doughnut',</span></p>
+<p class="p1"><span class="s1">                        data: {</span></p>
+<p class="p1"><span class="s1">                            labels: ['Remaining Premium', 'Potential Savings'],</span></p>
+<p class="p1"><span class="s1">                            datasets: [{</span></p>
+<p class="p1"><span class="s1">                                data: [remaining, savings],</span></p>
+<p class="p1"><span class="s1">                                backgroundColor: [</span></p>
+<p class="p1"><span class="s1">                                    '#d1d5db',</span></p>
+<p class="p1"><span class="s1">                                    '#2563eb'</span></p>
+<p class="p1"><span class="s1">                                ],</span></p>
+<p class="p1"><span class="s1">                                borderColor: '#F8F7F4',</span></p>
+<p class="p1"><span class="s1">                                borderWidth: 4</span></p>
+<p class="p1"><span class="s1">                            }]</span></p>
+<p class="p1"><span class="s1">                        },</span></p>
+<p class="p1"><span class="s1">                        options: {</span></p>
+<p class="p1"><span class="s1">                            responsive: true,</span></p>
+<p class="p1"><span class="s1">                            maintainAspectRatio: false,</span></p>
+<p class="p1"><span class="s1">                            cutout: '70%',</span></p>
+<p class="p1"><span class="s1">                            plugins: {</span></p>
+<p class="p1"><span class="s1">                                legend: {</span></p>
+<p class="p1"><span class="s1">                                    position: 'bottom',</span></p>
+<p class="p1"><span class="s1">                                },</span></p>
+<p class="p1"><span class="s1">                                tooltip: {</span></p>
+<p class="p1"><span class="s1">                                    callbacks: {</span></p>
+<p class="p1"><span class="s1">                                        label: function(context) {</span></p>
+<p class="p1"><span class="s1">                                            let label = context.label || '';</span></p>
+<p class="p1"><span class="s1">                                            if (label) {</span></p>
+<p class="p1"><span class="s1">                                                label += ': ';</span></p>
+<p class="p1"><span class="s1">                                            }</span></p>
+<p class="p1"><span class="s1">                                            if (context.parsed !== null) {</span></p>
+<p class="p1"><span class="s1">                                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed);</span></p>
+<p class="p1"><span class="s1">                                            }</span></p>
+<p class="p1"><span class="s1">                                            return label;</span></p>
+<p class="p1"><span class="s1">                                        }</span></p>
+<p class="p1"><span class="s1">                                    }</span></p>
+<p class="p1"><span class="s1">                                }</span></p>
+<p class="p1"><span class="s1">                            }</span></p>
+<p class="p1"><span class="s1">                        }</span></p>
+<p class="p1"><span class="s1">                    });</span></p>
+<p class="p1"><span class="s1">                }</span></p>
+<p class="p1"><span class="s1">            }</span></p>
+<p class="p1"><span class="s1">           <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">            createOrUpdateChart();</span></p>
+<p class="p1"><span class="s1">            chartExplainer.textContent = 'Enter your premium to see a potential savings breakdown.';</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">            calculateBtn.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1">                const premium = parseFloat(premiumInput.value);</span></p>
+<p class="p1"><span class="s1">                if (!isNaN(premium) &amp;&amp; premium &gt; 0) {</span></p>
+<p class="p1"><span class="s1">                    const estimatedDiscount = 0.10;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">                    const savings = premium * estimatedDiscount;</span></p>
+<p class="p1"><span class="s1">                    createOrUpdateChart(premium, savings);</span></p>
+<p class="p1"><span class="s1">                } else {</span></p>
+<p class="p1"><span class="s1">                   createOrUpdateChart();</span></p>
+<p class="p1"><span class="s1">                   chartExplainer.textContent = 'Please enter a valid premium amount.';</span></p>
+<p class="p1"><span class="s1">                }</span></p>
+<p class="p1"><span class="s1">            });</span></p>
+<p class="p1"><span class="s1">        });</span></p>
+<p class="p1"><span class="s1">    &lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
